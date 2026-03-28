@@ -17,6 +17,14 @@
   --color-neon-cyan: #2ff3ff;
   --color-neon-pink: #ff2dcf;
   --color-neon-lime: #d4ff40;
+
+  --color-tropical-900: #0f3d2e;
+  --color-tropical-800: #14553f;
+  --color-tropical-700: #1d6b4e;
+  --color-tropical-500: #2fa36f;
+  --color-tropical-300: #88d8ad;
+  --color-tropical-100: #dff7ea;
+  --color-palm-gold: #e8c96d;
 }
 
 html,
@@ -113,6 +121,62 @@ h4 {
   transform: scale(0.98);
 }
 
+.tropical-start-card {
+  border: 1px solid rgb(136 216 173 / 45%);
+  background:
+    radial-gradient(circle at 20% 15%, rgb(232 201 109 / 14%), transparent 40%),
+    linear-gradient(145deg, rgb(20 85 63 / 92%), rgb(15 61 46 / 90%));
+  box-shadow: 0 0 0 1px rgb(47 163 111 / 30%) inset, 0 0 26px rgb(47 163 111 / 26%);
+}
+
+.tropical-btn {
+  border: 1px solid rgb(136 216 173 / 68%);
+  background: linear-gradient(130deg, rgb(47 163 111 / 42%), rgb(232 201 109 / 26%));
+  color: #effff5;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 16px rgb(47 163 111 / 30%), 0 0 9px rgb(232 201 109 / 22%) inset;
+  transition: transform 150ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.tropical-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgb(232 201 109 / 85%);
+  box-shadow: 0 0 26px rgb(232 201 109 / 30%), 0 0 14px rgb(47 163 111 / 50%) inset;
+}
+
+.tropical-shell {
+  position: relative;
+  background:
+    radial-gradient(circle at 12% 8%, rgb(136 216 173 / 18%), transparent 30%),
+    radial-gradient(circle at 84% 16%, rgb(232 201 109 / 14%), transparent 32%),
+    radial-gradient(circle at 55% 100%, rgb(20 85 63 / 42%), transparent 46%);
+}
+
+.tropical-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgb(136 216 173 / 12%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(136 216 173 / 10%) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(circle at center, black 46%, transparent 100%);
+}
+
+.tropical-progress {
+  background:
+    linear-gradient(120deg, rgb(29 107 78 / 84%), rgb(20 85 63 / 84%));
+  border: 1px solid rgb(136 216 173 / 38%);
+  box-shadow: 0 0 16px rgb(47 163 111 / 20%);
+}
+
+.tropical-checklist-item {
+  animation: checklistRise 420ms ease both;
+}
+
 @keyframes panelReveal {
   from {
     opacity: 0;
@@ -158,6 +222,27 @@ h4 {
     transform: translateY(-4px) scale(1.02);
   }
   100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tropicalPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 14px rgb(47 163 111 / 38%), 0 0 0 1px rgb(232 201 109 / 24%) inset;
+  }
+  50% {
+    box-shadow: 0 0 24px rgb(232 201 109 / 45%), 0 0 0 1px rgb(47 163 111 / 32%) inset;
+  }
+}
+
+@keyframes checklistRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
     transform: translateY(0) scale(1);
   }
 }

@@ -1,5 +1,7 @@
+import type { GameMode } from '../types';
+
 interface StartScreenProps {
-  onStart: () => void;
+  onStart: (mode: GameMode) => void;
 }
 
 export function StartScreen({ onStart }: StartScreenProps) {
@@ -15,23 +17,33 @@ export function StartScreen({ onStart }: StartScreenProps) {
           Event Linkup Protocol
         </p>
         <h1 className="cyber-title mb-2 text-5xl font-extrabold text-white md:text-6xl">SOC OPS</h1>
-        <p className="mb-8 text-lg font-medium uppercase tracking-[0.2em] text-neon-pink">Neon Social Bingo</p>
+        <p className="mb-8 text-lg font-medium uppercase tracking-[0.2em] text-neon-pink">Choose Your Mission Mode</p>
 
-        <div className="mb-8 rounded-xl border border-neon-pink/40 bg-surface-raised/85 p-5 text-left shadow-[0_0_26px_rgb(255_45_207_/_16%)]">
-          <h2 className="mb-3 text-base font-bold uppercase tracking-[0.16em] text-neon-cyan">How to play</h2>
-          <ul className="space-y-2 text-sm leading-relaxed text-slate-200">
-            <li>• Find people who match each mission prompt.</li>
-            <li>• Tap a square to lock in each confirmed match.</li>
-            <li>• Trigger 5 in a row to fire the BINGO alarm.</li>
-          </ul>
+        <div className="mb-4 rounded-xl border border-neon-cyan/40 bg-surface-raised/85 p-5 text-left shadow-[0_0_26px_rgb(47_243_255_/_14%)]">
+          <h2 className="mb-2 text-base font-bold uppercase tracking-[0.16em] text-neon-cyan">Neon Social Bingo</h2>
+          <p className="mb-4 text-sm text-slate-200">
+            Classic 5x5 board. Find matching people and trigger a full row, column, or diagonal.
+          </p>
+          <button
+            onClick={() => onStart('bingo')}
+            className="neon-btn w-full rounded-xl px-8 py-3 text-base font-bold"
+          >
+            Start Bingo Run
+          </button>
         </div>
 
-        <button
-          onClick={onStart}
-          className="neon-btn w-full rounded-xl px-8 py-4 text-lg font-bold"
-        >
-          Start Run
-        </button>
+        <div className="tropical-start-card mb-2 rounded-xl p-5 text-left">
+          <h2 className="mb-2 text-base font-bold uppercase tracking-[0.16em] text-tropical-100">Scavenger Hunt Checklist</h2>
+          <p className="mb-4 text-sm text-tropical-100/90">
+            Complete every mission in any order and finish the full checklist to win.
+          </p>
+          <button
+            onClick={() => onStart('scavenger')}
+            className="tropical-btn w-full rounded-xl px-8 py-3 text-base font-bold"
+          >
+            Start Tropical Hunt
+          </button>
+        </div>
       </div>
     </div>
   );

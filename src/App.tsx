@@ -5,12 +5,17 @@ import { BingoModal } from './components/BingoModal';
 
 function App() {
   const {
+    mode,
     gameState,
     board,
+    checklist,
+    checklistCompletedCount,
+    checklistTotal,
     winningSquareIds,
     showBingoModal,
     startGame,
     handleSquareClick,
+    handleChecklistToggle,
     resetGame,
     dismissModal,
   } = useBingoGame();
@@ -20,15 +25,21 @@ function App() {
   }
 
   return (
-    <div className="min-h-full cyber-grid">
+    <div className={`min-h-full ${mode === 'scavenger' ? 'tropical-shell' : 'cyber-grid'}`}>
       <GameScreen
+        mode={mode}
         board={board}
+        checklist={checklist}
+        checklistCompletedCount={checklistCompletedCount}
+        checklistTotal={checklistTotal}
         winningSquareIds={winningSquareIds}
         hasBingo={gameState === 'bingo'}
+        isChecklistComplete={mode === 'scavenger' && gameState === 'complete'}
         onSquareClick={handleSquareClick}
+        onChecklistToggle={handleChecklistToggle}
         onReset={resetGame}
       />
-      {showBingoModal && (
+      {mode === 'bingo' && showBingoModal && (
         <BingoModal onDismiss={dismissModal} />
       )}
     </div>
