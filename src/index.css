@@ -1,11 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Orbitron:wght@500;700;800&display=swap');
 @import 'tailwindcss';
 
 @theme {
-  --color-accent: #2563eb;
-  --color-accent-light: #3b82f6;
-  --color-marked: #dcfce7;
-  --color-marked-border: #22c55e;
-  --color-bingo: #fbbf24;
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Chakra Petch', sans-serif;
+
+  --color-accent: #2ff3ff;
+  --color-accent-light: #7af9ff;
+  --color-marked: #111f37;
+  --color-marked-border: #2ff3ff;
+  --color-bingo: #ff2dcf;
+
+  --color-surface: #070812;
+  --color-surface-raised: #101528;
+  --color-grid: #2a3657;
+  --color-neon-cyan: #2ff3ff;
+  --color-neon-pink: #ff2dcf;
+  --color-neon-lime: #d4ff40;
 }
 
 html,
@@ -16,6 +27,137 @@ body,
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
+  color: #d8ecff;
+  background:
+    radial-gradient(circle at 20% 15%, rgb(47 243 255 / 22%), transparent 35%),
+    radial-gradient(circle at 80% 12%, rgb(255 45 207 / 28%), transparent 34%),
+    radial-gradient(circle at 50% 90%, rgb(14 29 63 / 55%), transparent 42%),
+    #05070f;
+  background-attachment: fixed;
   -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  isolation: isolate;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+}
+
+.cyber-grid {
+  position: relative;
+}
+
+.cyber-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgb(47 243 255 / 10%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(47 243 255 / 10%) 1px, transparent 1px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+.scanline-overlay {
+  position: relative;
+}
+
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgb(47 243 255 / 8%) 45%, transparent 100%);
+  background-size: 100% 4px;
+  mix-blend-mode: screen;
+  opacity: 0.32;
+}
+
+.cyber-panel {
+  border: 1px solid rgb(47 243 255 / 44%);
+  background: linear-gradient(160deg, rgb(16 21 40 / 88%), rgb(9 13 24 / 82%));
+  box-shadow: 0 0 0 1px rgb(255 45 207 / 25%) inset, 0 0 26px rgb(47 243 255 / 20%);
+  backdrop-filter: blur(8px);
+}
+
+.cyber-title {
+  text-shadow: 0 0 12px rgb(47 243 255 / 75%), 0 0 30px rgb(255 45 207 / 45%);
+}
+
+.neon-btn {
+  border: 1px solid rgb(47 243 255 / 60%);
+  background: linear-gradient(130deg, rgb(47 243 255 / 24%), rgb(255 45 207 / 26%));
+  color: #ecfdff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 18px rgb(47 243 255 / 32%), 0 0 10px rgb(255 45 207 / 25%) inset;
+  transition: transform 150ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.neon-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgb(255 45 207 / 75%);
+  box-shadow: 0 0 24px rgb(255 45 207 / 45%), 0 0 14px rgb(47 243 255 / 50%) inset;
+}
+
+.neon-btn:active {
+  transform: scale(0.98);
+}
+
+@keyframes panelReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    filter: saturate(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: saturate(1);
+  }
+}
+
+@keyframes neonPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 14px rgb(47 243 255 / 36%), 0 0 0 1px rgb(47 243 255 / 22%) inset;
+  }
+  50% {
+    box-shadow: 0 0 28px rgb(255 45 207 / 45%), 0 0 0 1px rgb(255 45 207 / 32%) inset;
+  }
+}
+
+@keyframes winnerPulse {
+  0%,
+  100% {
+    transform: translateZ(0) scale(1);
+    box-shadow: 0 0 24px rgb(255 45 207 / 55%), 0 0 14px rgb(212 255 64 / 30%) inset;
+  }
+  50% {
+    transform: translateZ(0) scale(1.03);
+    box-shadow: 0 0 36px rgb(212 255 64 / 66%), 0 0 16px rgb(255 45 207 / 65%) inset;
+  }
+}
+
+@keyframes modalDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.93);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }

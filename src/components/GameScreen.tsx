@@ -17,33 +17,29 @@ export function GameScreen({
   onReset,
 }: GameScreenProps) {
   return (
-    <div className="flex flex-col min-h-full bg-gray-50">
-      {/* Header */}
-      <header className="flex items-center justify-between p-3 bg-white border-b border-gray-200">
+    <div className="cyber-grid flex min-h-full flex-col">
+      <header className="mx-3 mt-3 flex items-center justify-between rounded-xl border border-neon-cyan/45 bg-surface-raised/85 px-3 py-2 shadow-[0_0_20px_rgb(47_243_255_/_16%)] backdrop-blur">
         <button
           onClick={onReset}
-          className="text-gray-500 text-sm px-3 py-1.5 rounded active:bg-gray-100"
+          className="rounded-md border border-neon-cyan/55 px-3 py-1.5 text-sm font-semibold uppercase tracking-[0.12em] text-neon-cyan transition hover:border-neon-pink hover:text-neon-pink active:scale-[0.98]"
         >
-          ← Back
+          Back
         </button>
-        <h1 className="font-bold text-gray-900">Soc Ops</h1>
-        <div className="w-16"></div>
+        <h1 className="cyber-title text-sm font-bold text-white md:text-base">Soc Ops // Live Board</h1>
+        <div className="w-[72px] text-right text-xs font-semibold uppercase tracking-[0.2em] text-neon-lime/90">Sync</div>
       </header>
 
-      {/* Instructions */}
-      <p className="text-center text-gray-500 text-sm py-2 px-4">
-        Tap a square when you find someone who matches it.
+      <p className="mx-3 mt-3 rounded-lg border border-neon-pink/40 bg-surface-raised/75 px-4 py-2 text-center text-sm text-slate-200 shadow-[0_0_18px_rgb(255_45_207_/_18%)]">
+        Mark each square as you meet someone who matches the prompt.
       </p>
 
-      {/* Bingo indicator */}
       {hasBingo && (
-        <div className="bg-amber-100 text-amber-800 text-center py-2 font-semibold text-sm">
-          🎉 BINGO! You got a line!
+        <div className="mx-3 mt-3 animate-[neonPulse_1.2s_ease-in-out_infinite] rounded-lg border border-neon-lime/70 bg-neon-lime/12 py-2 text-center text-sm font-semibold uppercase tracking-[0.16em] text-neon-lime">
+          Bingo signal confirmed // line complete
         </div>
       )}
 
-      {/* Board */}
-      <div className="flex-1 flex items-center justify-center p-3">
+      <div className="flex flex-1 items-center justify-center p-3">
         <BingoBoard
           board={board}
           winningSquareIds={winningSquareIds}
